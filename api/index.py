@@ -10,7 +10,7 @@ PAGE = r"""
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fff1f7">
-<title>For Nista Didi 💗</title>
+<title>For Nishta Didi 💗</title>
 
 <style>
 * {
@@ -308,7 +308,7 @@ h1 {
 
     <div class="eyebrow">A little something, just for you</div>
 
-    <h1>For Nista Didi 💗</h1>
+    <h1>For Nishta Didi 💗</h1>
 
     <p class="subtitle">
         Some people become a part of our everyday life
