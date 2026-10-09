@@ -1,4 +1,4 @@
-# Nista's Goodbye Website 💗
+# Nistha's Goodbye Website 💗
 
 A mobile-friendly Flask website with an interactive letter, floating hearts, optional music, and a final reveal.
 
