@@ -339,7 +339,7 @@ h1 {
 
     <article class="letter" id="letter">
 
-        <h2 class="letter-heading">Dear Nista Didi, ♡</h2>
+        <h2 class="letter-heading">Dear Nishta Didi, ♡</h2>
 
         <p>
             It's crazy to think that you came here so unexpectedly,
