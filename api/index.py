@@ -238,6 +238,7 @@ h1 {
 .surprise p {
     margin-bottom: 0;
     text-align: center;
+    line-height: 1.8;
 }
 
 .footer {
@@ -282,6 +283,10 @@ h1 {
     .envelope {
         height: 185px;
     }
+
+    .envelope-seal {
+        top: 68px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -296,7 +301,7 @@ h1 {
 <body>
 
 <audio id="music" loop preload="auto">
-    <source src="/static\A.R._Rahman_-_Maahi_Ve_-_Songspk.name_(mp3.pm).mp3" type="audio/mpeg">
+    <source src="/static/maahi_ve.mp3" type="audio/mpeg">
 </audio>
 
 <main class="container">
@@ -333,61 +338,67 @@ h1 {
     </section>
 
     <article class="letter" id="letter">
+
         <h2 class="letter-heading">Dear Nista Didi, ♡</h2>
 
-         <p>
-        It's crazy to think that you came here so unexpectedly,
-        just for two months, and somehow became so familiar in
-        such a short time.
-    </p>
-
-    <p>
-        I never imagined I'd get this used to having you around.
-        It's funny how someone can enter your life unexpectedly
-        and become a part of your everyday routine before you
-        even realise it.
-    </p>
-
-    <p>
-        I'll miss our little conversations, the random moments,
-        and simply having you around. Honestly, I wish these
-        two months had been a little longer. 🥹💗
-    </p>
-
-    <p>
-        I'm really glad life brought you here, Didi. You may
-        have come as a temporary roommate, but you'll always
-        be a lovely part of my memories.
-    </p>
-
-    <p>
-        Go home happily, take care of yourself, and don't forget
-        me! I hope we stay in touch and never become strangers
-        just because we're no longer sharing the same space.
-    </p>
-
-    <p>
-        <strong>Two months were short, but I'm so glad they had
-        you in them. ♡</strong>
-    </p>
-
-    <div class="signature">
-        With lots of love,<br>
-        Your roommate 💗
-    </div>
-
-    <div class="divider"></div>
-
-    <section class="surprise" id="surprise">
-        <div class="surprise-label">One last little thing</div>
-        <h2>You'll be missed, Didi. ♡</h2>
         <p>
-            You came here unexpectedly, stayed for just two months,
-            and somehow made saying goodbye harder than I imagined.
-            <br><br>
-            <strong>Once my roommate, always my Didi. 💗</strong>
+            It's crazy to think that you came here so unexpectedly,
+            just for two months, and somehow became so familiar in
+            such a short time.
         </p>
+
+        <p>
+            I never imagined I'd get this used to having you around.
+            It's funny how someone can enter your life unexpectedly
+            and become a part of your everyday routine before you
+            even realise it.
+        </p>
+
+        <p>
+            I'll miss our little conversations, the random moments,
+            and simply having you around. Honestly, I wish these
+            two months had been a little longer. 🥹💗
+        </p>
+
+        <p>
+            I'm really glad life brought you here, Didi. You may
+            have come as a temporary roommate, but you'll always
+            be a lovely part of my memories.
+        </p>
+
+        <p>
+            Go home happily, take care of yourself, and don't forget
+            me! I hope we stay in touch and never become strangers
+            just because we're no longer sharing the same space.
+        </p>
+
+        <p>
+            <strong>
+                Two months were short, but I'm so glad they had
+                you in them. ♡
+            </strong>
+        </p>
+
+        <div class="signature">
+            With lots of love,<br>
+            Your roommate 💗
+        </div>
+
+        <div class="divider"></div>
+
+        <section class="surprise" id="surprise">
+            <div class="surprise-label">One last little thing</div>
+
+            <h2>You'll be missed, Didi. ♡</h2>
+
+            <p>
+                You came here unexpectedly, stayed for just two months,
+                and somehow made saying goodbye harder than I imagined.
+                <br><br>
+                <strong>Once my roommate, always my Didi. 💗</strong>
+            </p>
         </section>
+
     </article>
 
     <div class="footer">
@@ -407,56 +418,25 @@ const surprise = document.getElementById("surprise");
 
 let opened = false;
 
-// Browsers may block autoplay until the visitor interacts.
-// Try autoplay immediately, then retry on the first tap anywhere.
-async function startMusic() {
-    try {
-        await audio.play();
-    } catch (error) {
-        // Autoplay was blocked; retry after the first user interaction.
-    }
+// Attempt autoplay. Mobile browsers may block this until a tap.
+function startMusic() {
+    audio.play().catch(() => {
+        // Music will be retried when the envelope is tapped.
+    });
 }
 
 startMusic();
 
-function enableMusicAfterInteraction() {
-    if (audio.paused) {
-        audio.play().catch(() => {});
-    }
-
-    document.removeEventListener("pointerdown", enableMusicAfterInteraction);
-    document.removeEventListener("keydown", enableMusicAfterInteraction);
-}
-
-document.addEventListener("pointerdown", enableMusicAfterInteraction);
-document.addEventListener("keydown", enableMusicAfterInteraction);
-
-function floatDecorations() {
-    const symbols = ["♡", "✧", "♥", "✦"];
-
-    for (let i = 0; i < 16; i++) {
-        setTimeout(() => {
-            const item = document.createElement("span");
-            item.className = "floating";
-            item.textContent = symbols[
-                Math.floor(Math.random() * symbols.length)
-            ];
-
-            item.style.left = Math.random() * 100 + "vw";
-            item.style.fontSize = (14 + Math.random() * 15) + "px";
-            item.style.color = Math.random() > 0.5 ? "#e58eaf" : "#b6a0e8";
-            item.style.animationDuration = (4 + Math.random() * 3) + "s";
-
-            document.body.appendChild(item);
-
-            setTimeout(() => item.remove(), 7500);
-        }, i * 160);
-    }
-}
-
-function openLetter() {
+async function openLetter() {
     if (opened) return;
     opened = true;
+
+    // Play the song directly from the envelope tap.
+    try {
+        await audio.play();
+    } catch (error) {
+        console.log("Music could not start:", error);
+    }
 
     flap.style.transform = "rotateX(180deg)";
     flap.style.opacity = "0";
@@ -471,6 +451,30 @@ function openLetter() {
             floatDecorations();
         }, 1800);
     }, 650);
+}
+
+function floatDecorations() {
+    const symbols = ["♡", "✧", "♥", "✦"];
+
+    for (let i = 0; i < 16; i++) {
+        setTimeout(() => {
+            const item = document.createElement("span");
+            item.className = "floating";
+            item.textContent = symbols[
+                Math.floor(Math.random() * symbols.length)
+            ];
+
+            item.style.left = Math.random() * 100 + "vw";
+            item.style.fontSize = (14 + Math.random() * 15) + "px";
+            item.style.color =
+                Math.random() > 0.5 ? "#e58eaf" : "#b6a0e8";
+            item.style.animationDuration = (4 + Math.random() * 3) + "s";
+
+            document.body.appendChild(item);
+
+            setTimeout(() => item.remove(), 7500);
+        }, i * 160);
+    }
 }
 
 envelope.addEventListener("click", openLetter);
@@ -495,4 +499,3 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
