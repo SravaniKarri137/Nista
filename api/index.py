@@ -10,7 +10,7 @@ PAGE = r"""
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fff1f7">
-<title>For Nishta Didi 💗</title>
+<title>For Nishtha Didi 💗</title>
 
 <style>
 * {
@@ -308,7 +308,7 @@ h1 {
 
     <div class="eyebrow">A little something, just for you</div>
 
-    <h1>For Nishta Didi 💗</h1>
+    <h1>For Nishtha Didi 💗</h1>
 
     <p class="subtitle">
         Some people become a part of our everyday life
@@ -339,7 +339,7 @@ h1 {
 
     <article class="letter" id="letter">
 
-        <h2 class="letter-heading">Dear Nishta Didi, ♡</h2>
+        <h2 class="letter-heading">Dear Nishtha Didi, ♡</h2>
 
         <p>
             It's crazy to think that you came here so unexpectedly,
